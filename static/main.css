@@ -1,0 +1,1088 @@
+html {
+    scroll-behavior: smooth;
+}
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 
+    40% {transform: translateY(-20px);} 
+    60% {transform: translateY(-10px);}
+}
+.gradient-bg {
+    background: linear-gradient(to bottom right, #fef08a, #fbcfe8, #d8b4fe);
+    min-height: 100vh;
+}
+.nav-gradient {
+    background: linear-gradient(to right, #a78bfa, #e879f9);
+    .nav-link {
+        color: #f3e8ff !important;
+    }
+     .navbar-brand {
+        color: #f3e8ff !important;
+    }
+}
+.hero-gradient {
+    background: linear-gradient(to right, #fef08a, #fbcfe8, #d8b4fe);
+    color: #4a0e4e;
+    h1, p {
+        color: #4a0e4e;
+    }
+}
+.features-gradient {
+    background: linear-gradient(to bottom right, #fbcfe8, #d8b4fe, #fef08a);
+    padding: 5rem 1rem;
+}
+.accordion-item {
+    border: 2px solid #d8b4fe;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 10px rgba(147, 51, 234, 0.1);
+}
+.accordion-button {
+    background-color: #ede9fe;
+    color: #5b21b6;
+    font-weight: 600;
+    position: relative;
+}
+.accordion-button::after {
+    display: none;
+}
+.accordion-button .faq-icon {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%) rotate(0deg);
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    font-size: 1.4rem;
+    color: #6d28d9;
+    filter: drop-shadow(0 0 4px #a855f7);
+}
+.accordion-button[aria-expanded="true"] .faq-icon {
+    transform: translateY(-50%) rotate(180deg) scale(1.4);
+    color: #ec4899;
+    filter: drop-shadow(0 0 10px #ec4899);
+    animation: bounceGlow 0.8s;
+}
+@keyframes bounceGlow {
+    0% { transform: translateY(-50%) scale(1.4) rotate(180deg); filter: drop-shadow(0 0 10px #ec4899); }
+    50% { transform: translateY(-60%) scale(1.6) rotate(180deg); filter: drop-shadow(0 0 20px #ec4899); }
+    100% { transform: translateY(-50%) scale(1.4) rotate(180deg); filter: drop-shadow(0 0 10px #ec4899); }
+}
+.accordion-body {
+    background-color: rgba(255, 255, 255, 0.95);
+    color: #4b5563;
+}
+.faq-gradient {
+    background: linear-gradient(to top right, #fef08a, #fbcfe8, #d8b4fe);
+    padding: 5rem 1rem;
+}
+.footer-gradient {
+    background: linear-gradient(to right, #7e22ce, #db2777, #ef4444);
+}
+.bounce-text {
+    animation: bounce 2s infinite;
+    color: #6b21a8;
+}
+
+
+.question-list {
+background: white;
+border-radius: 15px;
+padding: 1.5rem;
+margin: 2rem auto 0;
+box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+max-width: 800px;  /* Controlled width */
+width: 90%;  /* Responsive fallback */
+border: 2px solid #e9d5ff;
+}
+
+.question-item {
+font-size: 1rem;
+margin-bottom: 1rem;
+padding: 1.25rem;
+background: #f8f9fa;
+border-radius: 8px;
+transition: all 0.2s ease;
+width: 100%;  /* Full width of container */
+box-sizing: border-box;  /* Include padding in width */
+border-left: 4px solid #9333ea;
+}
+
+.question-item:hover {
+transform: translateX(8px);
+background: #ffffff;
+box-shadow: 0 3px 12px rgba(147, 51, 234, 0.1);
+}
+
+@media (max-width: 768px) {
+.question-list {
+    width: 95%;
+    padding: 1rem;
+}
+.question-item {
+    font-size: 0.95rem;
+    padding: 1rem;
+}
+}
+/* New Upload Section Styles */
+.upload-container {
+    background: linear-gradient(145deg, #f3e8ff, #fae8ff);
+    border-radius: 15px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 32px rgba(147, 51, 234, 0.1);
+    max-width: 700px;
+    margin: 0 auto;
+}
+.upload-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(147, 51, 234, 0.15);
+}
+.upload-icon {
+    font-size: 2.5rem;
+    color: #9333ea;
+    animation: float 3s ease-in-out infinite;
+}
+.file-input-wrapper {
+    border: 2px dashed #d8b4fe;
+    border-radius: 12px;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.9);
+    transition: all 0.3s ease;
+}
+.file-input-wrapper:hover {
+    background: rgba(255, 255, 255, 1);
+    transform: scale(1.02);
+}
+.custom-file-btn {
+    background: linear-gradient(45deg, #9333ea, #d946ef);
+    color: white !important;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+.custom-file-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(147, 51, 234, 0.3);
+}
+.generate-btn {
+    background: linear-gradient(45deg, #4f46e5, #9333ea);
+    color: white !important;
+    border: none;
+    padding: 16px 32px;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    margin-top: 1.5rem;
+}
+.generate-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(79, 70, 229, 0.3);
+}
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+/* Features Section Styles */
+.features-gradient {
+    background: linear-gradient(to bottom right, #fbcfe8, #d8b4fe, #fef08a);
+    padding: 5rem 1rem;
+}
+.feature-card {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border: 3px solid #cf6cd6 !important;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 24px rgba(147, 79, 203, 0.1);
+    margin: 0;
+}
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(147, 79, 203, 0.2);
+}
+.feature-card .card-body {
+    text-align: center;
+    padding: 2rem; /* Add internal padding */
+}
+.feature-icon {
+    font-size: 2.5rem;
+    color: #934fcb;
+    margin-bottom: 1rem;
+}
+.text-purple {
+    color: #6b21a8 !important;
+}
+
+.blog-gradient {
+background: linear-gradient(to bottom right, #fbcfe8, #d8b4fe, #fef08a);
+min-height: 100vh;
+padding: 5rem 1rem;
+}
+
+.blog-card {
+background: rgba(255, 255, 255, 0.95);
+border: 3px solid #d8b4fe;
+border-radius: 15px;
+transition: all 0.3s ease;
+box-shadow: 0 4px 12px rgba(147, 51, 234, 0.1);
+height: 100%;
+display: flex;
+flex-direction: column;
+/* Removed overflow:hidden to allow content expansion */
+}
+
+.blog-image-container {
+height: 250px;
+overflow: hidden;
+position: relative;
+}
+
+.blog-image {
+width: 100%;
+height: 100%;
+object-fit: cover;
+transition: transform 0.3s ease;
+}
+
+.blog-card:hover .blog-image {
+transform: scale(1.05);
+}
+
+.blog-content {
+padding: 1.5rem;
+flex: 1;
+display: flex;
+flex-direction: column;
+position: relative; /* For absolute positioning of pseudo-element */
+}
+
+/* New styles for expandable content */
+.teaser {
+position: relative;
+overflow: hidden;
+/* Add text overflow for folded state */
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+.teaser.unfolded {
+white-space: normal; /* Show full text when unfolded */
+overflow: visible; /* Allow text to wrap */
+text-overflow: clip;
+}
+
+.full-content {
+max-height: 0;
+overflow: hidden;
+transition: max-height 0.5s ease-in-out, opacity 0.5s ease;
+opacity: 0;
+margin-top: 0; /* Ensure no margin when collapsed */
+}
+
+.full-content.active {
+max-height: 2000px; /* Sufficiently large value to show content */
+opacity: 1;
+margin-top: 1rem; /* Add margin when expanded */
+}
+
+.read-more {
+margin-top: 1rem; /* Give some space */
+position: relative;
+z-index: 2;
+display: inline-block; /* Ensure it behaves like a block for margin-top */
+cursor: pointer; /* Indicate clickable */
+}
+
+/* Fade-out effect for teaser text */
+.teaser::after {
+content: "";
+position: absolute;
+bottom: 0;
+left: 0;
+right: 0;
+height: 40px; /* Slightly larger fade out */
+background: linear-gradient(to bottom, 
+rgba(255,255,255,0) 0%, 
+rgba(255,255,255,1) 100%
+); /* Fade to opaque white */
+transition: opacity 0.3s ease;
+pointer-events: none; /* Allow clicks to pass through */
+}
+
+.teaser.folded::after {
+opacity: 1;
+}
+
+.teaser.unfolded::after {
+opacity: 0;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade {
+    animation: fadeIn 0.8s ease-out;
+}
+
+.question-filters {
+margin: 2rem auto;
+}
+
+.filter-btn {
+font-weight: 600;
+padding: 0.75rem 1.5rem;
+margin: 0 0.5rem;
+border-radius: 25px;
+transition: all 0.3s ease;
+border: 2px solid #6b21a8;
+color: #6b21a8;
+background: transparent;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+background: linear-gradient(45deg, #6b21a8, #db2777);
+border-color: transparent;
+color: white;
+box-shadow: 0 4px 8px rgba(107, 33, 168, 0.2);
+}
+
+.btn-outline-dark {
+border-color: #6b21a8;
+color: #6b21a8;
+}
+
+.btn-outline-dark:hover,
+.btn-outline-dark.active {
+background-color: #6b21a8;
+border-color: #6b21a8;
+color: white;
+}
+
+.btn-success {
+background-color: #10b981;
+border-color: #10b981;
+}
+
+.btn-success:hover,
+.btn-success.active {
+background-color: #059669;
+border-color: #059669;
+}
+
+/* Job Selection Form Styles */
+.job-selection-container {
+background: linear-gradient(145deg, #f3e8ff, #fae8ff);
+border-radius: 15px;
+padding: 2rem;
+position: relative;
+overflow: hidden;
+transition: all 0.3s ease;
+box-shadow: 0 8px 32px rgba(147, 51, 234, 0.1);
+max-width: 700px;
+margin: 2rem auto;
+}
+
+.job-selection-container h2 {
+color: #6b21a8;
+text-align: center;
+margin-bottom: 1.5rem;
+}
+
+.job-icon {
+font-size: 2rem;
+color: #9333ea;
+margin-bottom: 1rem;
+text-align: center;
+display: block;
+}
+
+.form-select {
+border: 2px solid #d8b4fe;
+border-radius: 8px;
+padding: 0.75rem;
+margin-bottom: 1rem;
+background-color: white;
+color: #4b5563;
+}
+
+.form-select:focus {
+border-color: #9333ea;
+box-shadow: 0 0 0 0.25rem rgba(147, 51, 234, 0.25);
+}
+
+.job-description-textarea {
+border: 2px solid #d8b4fe;
+border-radius: 8px;
+padding: 0.75rem;
+margin-bottom: 1rem;
+background-color: white;
+color: #4b5563;
+min-height: 150px;
+width: 100%;
+resize: vertical;
+position: relative;
+}
+
+.job-description-textarea:focus {
+border-color: #9333ea;
+box-shadow: 0 0 0 0.25rem rgba(147, 51, 234, 0.25);
+}
+
+.btn-generate-sample {
+background: linear-gradient(45deg, #9333ea, #d946ef);
+color: white;
+border: none;
+padding: 0.75rem 1.5rem;
+border-radius: 8px;
+font-weight: 600;
+margin-right: 1rem;
+}
+
+.btn-generate-questions {
+background: linear-gradient(45deg, #4f46e5, #9333ea);
+color: white;
+border: none;
+padding: 0.75rem 1.5rem;
+border-radius: 8px;
+font-weight: 600;
+position: relative;
+min-width: 200px;
+}
+
+.btn-generate-questions:hover {
+transform: translateY(-2px);
+box-shadow: 0 5px 15px rgba(147, 51, 234, 0.3);
+color: white;
+}
+
+.button-loader {
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+display: flex;
+align-items: center;
+justify-content: center;
+background: inherit;
+border-radius: inherit;
+}
+
+.spinner-border-sm {
+width: 1rem;
+height: 1rem;
+border-width: 0.15em;
+}
+
+.btn-outline-purple {
+color: #6b21a8;
+border-color: #6b21a8;
+}
+
+.btn-outline-purple:hover,
+.btn-outline-purple.active {
+background-color: #6b21a8;
+border-color: #6b21a8;
+color: white;
+}
+
+.question-item {
+background: #f8f9fa;
+border-left: 4px solid #6b21a8;
+padding: 1.5rem;
+border-radius: 8px;
+margin-bottom: 1rem;
+transition: all 0.3s ease;
+}
+
+.question-item:hover {
+transform: translateX(8px);
+background: #ffffff;
+box-shadow: 0 3px 12px rgba(107, 33, 168, 0.1);
+}
+
+/* Loading Animation Styles */
+.loading-overlay {
+display: none;
+}
+
+.loading-spinner {
+width: 40px;
+height: 40px;
+border: 4px solid #d8b4fe;
+border-top: 4px solid #9333ea;
+border-radius: 50%;
+animation: spin 1s linear infinite;
+margin-bottom: 0.5rem;
+}
+
+.loading-text {
+color: #6b21a8;
+font-size: 1rem;
+font-weight: 600;
+text-align: center;
+padding: 0 1rem;
+}
+
+@keyframes spin {
+0% { transform: rotate(0deg); }
+100% { transform: rotate(360deg); }
+}
+
+.upload-container {
+position: relative; /* For loading overlay positioning */
+}
+
+.question-section {
+display: block;
+margin-bottom: 3rem;
+padding: 1rem;
+background: white;
+border-radius: 15px;
+box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.question-item {
+background: #f8f9fa;
+border-left: 4px solid #6b21a8;
+padding: 1.5rem;
+border-radius: 8px;
+margin-bottom: 1rem;
+transition: all 0.3s ease;
+}
+
+.question-item:hover {
+transform: translateX(8px);
+background: #ffffff;
+box-shadow: 0 3px 12px rgba(107, 33, 168, 0.1);
+}
+
+.filter-btn {
+font-weight: 600;
+padding: 0.75rem 1.5rem;
+margin: 0 0.5rem;
+border-radius: 25px;
+transition: all 0.3s ease;
+}
+
+.filter-btn.active {
+background: linear-gradient(45deg, #6b21a8, #db2777);
+color: white;
+box-shadow: 0 4px 8px rgba(107, 33, 168, 0.2);
+}
+
+/* Resume Upload Loading Overlay */
+.upload-container {
+position: relative;
+}
+
+.loading-overlay {
+display: none;
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: rgba(255, 255, 255, 0.95);
+border-radius: 15px;
+z-index: 1000;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+}
+
+.loading-spinner {
+width: 50px;
+height: 50px;
+border: 5px solid #f3e8ff;
+border-top: 5px solid #9333ea;
+border-radius: 50%;
+animation: spin 1s linear infinite;
+margin-bottom: 1rem;
+}
+
+.loading-text {
+color: #6b21a8;
+font-size: 1.1rem;
+font-weight: 600;
+}
+
+/* Job Description Button Loading State */
+.btn-generate-questions {
+position: relative;
+min-width: 200px;
+}
+
+.button-loader {
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+display: flex;
+align-items: center;
+justify-content: center;
+background: inherit;
+border-radius: inherit;
+}
+
+.spinner-border-sm {
+width: 1rem;
+height: 1rem;
+border-width: 0.15em;
+}
+
+.job-details-header {
+background: linear-gradient(145deg, #f3e8ff, #fae8ff);
+padding: 20px;
+border-radius: 15px;
+box-shadow: 0 4px 12px rgba(147, 51, 234, 0.1);
+}
+
+.job-details-header h3 {
+color: #7e22ce;
+font-weight: 600;
+margin: 0;
+background: linear-gradient(90deg, #6b21a8, #9333ea);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+}
+
+.gradient-divider {
+height: 3px;
+background: linear-gradient(90deg, #7e22ce, #d946ef);
+margin-top: 15px;
+border-radius: 3px;
+box-shadow: 0 2px 4px rgba(147, 51, 234, 0.2);
+}
+
+/* Add these new styles for transitions */
+.question-section {
+transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+}
+
+.question-section.fade-out {
+opacity: 0;
+transform: translateY(10px);
+}
+
+.question-section.fade-in {
+opacity: 1;
+transform: translateY(0);
+}
+.generate-answer-btn {
+    background: linear-gradient(135deg, #9333ea, #7c3aed);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    min-width: 160px;
+    white-space: nowrap;
+}
+
+.generate-answer-btn:hover {
+    background: linear-gradient(135deg, #7c3aed, #6d28d9);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+    color: white;
+}
+
+.generate-answer-btn:disabled {
+    opacity: 0.7;
+    cursor: wait;
+    transform: none;
+}
+
+.generate-answer-btn i {
+    font-size: 1rem;
+}
+
+.answer-container {
+    display: none;
+    margin-top: 1rem;
+    padding: 1.5rem;
+    background: rgba(147, 51, 234, 0.05);
+    border-radius: 12px;
+    border-left: 4px solid #9333ea;
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+}
+
+.answer-container.visible {
+    display: block;
+    opacity: 1;
+}
+
+.answer-container.hiding {
+    opacity: 0;
+}
+
+.answer-content {
+    color: #4a5568;
+    line-height: 1.6;
+    font-size: 0.95rem;
+    white-space: pre-line;
+}
+
+.generated-answer {
+    color: #4a5568;
+    line-height: 1.6;
+    font-size: 0.95rem;
+    white-space: pre-line;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.question-item {
+    background: white;
+    border-radius: 15px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+#technical-questions .answer-container {
+    border-left-color: #0d6efd;
+}
+
+#behavioral-questions .answer-container {
+    border-left-color: #198754;
+}
+
+#situational-questions .answer-container {
+    border-left-color: #dc3545;
+}
+/* Add to main.css */
+.faq-icon {
+    transition: transform 0.3s ease;
+}
+
+.accordion-button:not(.collapsed) .faq-icon {
+    transform: rotate(180deg);
+}
+
+/* For answer containers - smoother transitions */
+.answer-container {
+    transition: opacity 0.5s ease, max-height 0.5s ease;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+}
+
+.answer-container.visible {
+    max-height: 2000px; /* Arbitrary large height */
+    opacity: 1;
+}
+
+.answer-container.hiding {
+    opacity: 0;
+    max-height: 0;
+}
+/* Add these CSS rules if they're not already in your main.css */
+.blog-content .full-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+    opacity: 0;
+}
+
+.blog-content .full-content.active {
+    max-height: 1000px; /* Arbitrary large value */
+    opacity: 1;
+}
+
+.blog-content .teaser.folded {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.blog-content .teaser.unfolded {
+    white-space: normal;
+}
+
+/* Number Selector Styles - improved for modern, clean look */
+.counter-container, .job-counter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f3e8ff;
+    border-radius: 30px;
+    box-shadow: 0 2px 10px rgba(168, 85, 247, 0.08);
+    padding: 8px 16px;
+    margin: 0 auto;
+    width: fit-content;
+}
+.button, .job-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #9333ea 0%, #a855f7 100%);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 2px 8px rgba(147, 51, 234, 0.10);
+    transition: background 0.2s, transform 0.1s;
+    margin: 0 8px;
+}
+.button:hover, .job-btn:hover {
+    background: linear-gradient(135deg, #a855f7 0%, #db2777 100%);
+    transform: scale(1.08);
+}
+.number-viewport, .job-viewport {
+    width: 60px;
+    overflow: hidden;
+    position: relative;
+    height: 40px;
+    margin: 0 8px;
+}
+.number-strip {
+    display: flex;
+    position: absolute;
+    transition: transform 0.3s cubic-bezier(.4,2,.6,1);
+    height: 100%;
+    left: 0;
+}
+.number-item {
+    width: 60px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #9333ea;
+    background: transparent;
+    border-radius: 10px;
+    transition: all 0.3s cubic-bezier(.4,2,.6,1);
+}
+.number-item.current {
+    background: #ede9fe;
+    color: #7c3aed;
+    box-shadow: 0 2px 8px rgba(168, 85, 247, 0.10);
+    opacity: 1;
+    transform: scale(1.08);
+}
+.number-item.adjacent {
+    opacity: 0.3;
+    transform: scale(0.85);
+}
+.number-viewport::before, .number-viewport::after,
+.job-viewport::before, .job-viewport::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 18px;
+    height: 100%;
+    background: rgba(255,255,255,0.8);
+    z-index: 5;
+    pointer-events: none;
+}
+.number-viewport::before, .job-viewport::before {
+    left: 0;
+    background: linear-gradient(to right, #f3e8ff 80%, rgba(255,255,255,0) 100%);
+}
+.number-viewport::after, .job-viewport::after {
+    right: 0;
+    background: linear-gradient(to left, #f3e8ff 80%, rgba(255,255,255,0) 100%);
+}
+.counter-value {
+    text-align: center;
+    margin-top: 8px;
+    font-size: 1rem;
+    color: #7c3aed;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+/* Password Toggle Icon Styling */
+.password-toggle-icon {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #6c757d;
+    z-index: 2; /* Ensure it's above the input */
+}
+
+.password-toggle-icon:hover {
+    color: #000;
+}
+
+/* General Container Spacing */
+.container {
+    /* Ensures padding is included in total width */
+    box-sizing: border-box;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem; /* Added default horizontal padding */
+}
+
+.container > *:not(:last-child) {
+    margin-bottom: 1.5rem; /* Add space between direct children of container */
+}
+
+/* Specific Section Adjustments */
+.hero-gradient .container > *:not(:last-child) {
+     margin-bottom: 1.5rem; /* Adjust spacing in hero specifically if needed */
+}
+
+.features-gradient .card {
+    margin-bottom: 0; /* Remove bottom margin from cards if parent adds it */
+}
+
+.faq-gradient .accordion-item {
+    margin-bottom: 1.5rem; /* Ensure consistent spacing between FAQ items */
+}
+
+.blog-gradient .row.g-4 > [class^="col-"] {
+    margin-bottom: 0; /* Remove column bottom margin if row has g-4 gap */
+}
+
+.blog-gradient .blog-card {
+     margin-bottom: 0; /* Remove card bottom margin if parent grid handles spacing */
+}
+
+/* Adjust heading margins within sections if they feel too close/far */
+section h2, section h3 {
+    margin-bottom: 1.5rem; /* Standardize heading bottom margin */
+}
+
+.fullscreen-hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center content horizontally */
+    flex-direction: column; /* Stack content vertically */
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+/* --- Navbar Adjustments --- */
+.navbar-collapse {
+    /* Ensure Bootstrap's default display is not overridden */
+}
+
+.navbar-collapse.collapse {
+    /* Bootstrap hides this by default on mobile */
+}
+
+.navbar-collapse.show {
+    /* Bootstrap shows this on mobile when toggled */
+    display: block !important; /* Ensure it's displayed */
+}
+
+@media (max-width: 991.98px) { /* Bootstrap's 'lg' breakpoint */
+    .navbar-collapse.collapse:not(.show) {
+        display: none; /* Explicitly hide when collapsed on mobile */
+    }
+    .navbar-nav {
+        /* Adjust alignment for stacked mobile menu */
+        text-align: center;
+        margin-top: 1rem;
+    }
+    .navbar-nav .nav-item {
+        margin: 0.5rem 0; /* Add space between stacked items */
+    }
+}
+
+/* --- Color Palette Refinements --- */
+.gradient-bg {
+    background: linear-gradient(to bottom right, #fef08a, #fbcfe8, #d8b4fe);
+    min-height: 100vh;
+}
+.nav-gradient {
+    background: linear-gradient(to right, #4338ca, #7e22ce, #db2777);
+    /* Adjust navbar link colors if needed to be visible on this gradient */
+    .nav-link {
+        color: #f3e8ff !important; /* Lighter text for dark nav */
+    }
+     .navbar-brand {
+        color: #f3e8ff !important; /* Lighter text for dark nav */
+    }
+}
+.hero-gradient {
+    background: linear-gradient(to right, #fef08a, #fbcfe8, #d8b4fe);
+    color: #4a0e4e; /* Darker text for contrast */
+    h1, p {
+        color: #4a0e4e; /* Darker text for contrast */
+    }
+}
+
+.features-gradient {
+    background: linear-gradient(to bottom right, #fbcfe8, #d8b4fe, #fef08a);
+    padding: 5rem 1rem;
+}
+
+.faq-gradient {
+    background: linear-gradient(to top right, #fef08a, #fbcfe8, #d8b4fe);
+    padding: 5rem 1rem;
+}
+
+.blog-gradient {
+background: linear-gradient(to bottom right, #fbcfe8, #d8b4fe, #fef08a);
+min-height: 100vh;
+padding: 5rem 1rem;
+}
+
+.bounce-text {
+    animation: bounce 2s infinite;
+    color: #6b21a8; /* Keep vibrant purple */
+}
+
+/* --- Layout & Spacing Refinements --- */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem; /* Added default horizontal padding */
+}
+
+section {
+    padding: 5rem 0; /* Standardized vertical padding for sections */
+}
+
+.hero-gradient {
+     padding: 8rem 0; /* More vertical padding for hero */
+}
+
+.section-title, .section-subtitle {
+    text-align: center;
+    margin-bottom: 3rem; /* Increased space below section titles */
+}
+
+/* Adjust spacing for cards and grid items if needed */
+.row.g-4 > [class^="col-"] {
+    margin-bottom: 1.5rem; /* Add bottom margin to grid columns */
+}
+
+.blog-card, .feature-card {
+    margin-bottom: 1.5rem; /* Add bottom margin to cards */
+}
+
+/* Remove extra bottom margin from the last card/item in a section's grid */
+section .row.g-4 > [class^="col-"]:last-child,
+section .blog-card:last-child,
+section .feature-card:last-child {
+    margin-bottom: 0; /* Remove bottom margin for the last item */
+}

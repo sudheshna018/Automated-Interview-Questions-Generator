@@ -1,0 +1,798 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InterviewPro - Mock Interview</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <style>
+        html, body {
+            height: 100%;
+            overflow-x: hidden;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            position: relative;
+        }
+        .gradient-bg {
+            background: linear-gradient(to bottom right, #d8b4fe, #fbcfe8, #fef9c3);
+            min-height: 100vh;
+            position: relative;
+            overflow-y: auto;
+        }
+        .nav-gradient {
+            background: linear-gradient(to right, #4338ca, #7e22ce, #db2777);
+        }
+        .upload-container {
+            background: linear-gradient(145deg, #f3e8ff, #fae8ff);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 2rem auto;
+            max-width: 800px;
+            box-shadow: 0 10px 30px rgba(147, 51, 234, 0.15);
+            border: 1px solid rgba(147, 51, 234, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .upload-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(147, 51, 234, 0.2);
+        }
+        .mic-button {
+            position: absolute;
+            right: 15px;
+            bottom: 15px;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(145deg, #6c757d, #5c636a);
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+        }
+        .mic-button:hover {
+            transform: scale(1.1);
+            background: linear-gradient(145deg, #5c636a, #4d5154);
+        }
+        .mic-button.recording {
+            background: linear-gradient(145deg, #dc3545, #b02a37) !important;
+            animation: pulse 1.5s infinite cubic-bezier(0.66, 0, 0, 1);
+        }
+        .mic-button.recording::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            border-radius: 50%;
+            background: rgba(220, 53, 69, 0.3);
+            z-index: -1;
+            animation: ripple 1.5s infinite cubic-bezier(0.66, 0, 0, 1);
+        }
+        @keyframes pulse {
+            0% { 
+                box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7);
+                transform: scale(1);
+            }
+            50% { 
+                box-shadow: 0 0 0 15px rgba(220, 53, 69, 0);
+                transform: scale(1.1);
+            }
+            100% { 
+                box-shadow: 0 0 0 0 rgba(220, 53, 69, 0);
+                transform: scale(1);
+            }
+        }
+        @keyframes ripple {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(2.5);
+                opacity: 0;
+            }
+        }
+        .mic-button.recording i {
+            animation: blink 1.5s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .response-box {
+            background: rgba(255, 255, 255, 0.95);
+            border: none;
+            border-radius: 15px;
+            padding: 2.5rem;
+            margin: 1.5rem 0;
+            position: relative;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border-left: 5px solid transparent;
+        }
+        .response-box:hover {
+            transform: translateX(5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
+        }
+        .response-box[data-category="technical"] {
+            border-left-color: #0d6efd;
+        }
+        .response-box[data-category="behavioral"] {
+            border-left-color: #198754;
+        }
+        .response-box[data-category="situational"] {
+            border-left-color: #dc3545;
+        }
+        .category-badge {
+            font-size: 0.85rem;
+            padding: 0.4rem 1rem;
+            margin-right: 0.8rem;
+            border-radius: 25px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .badge-technical {
+            background: linear-gradient(135deg, #0d6efd, #0a58ca);
+            color: white;
+        }
+        .badge-behavioral {
+            background: linear-gradient(135deg, #198754, #146c43);
+            color: white;
+        }
+        .badge-situational {
+            background: linear-gradient(135deg, #dc3545, #b02a37);
+            color: white;
+        }
+        textarea {
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 1rem;
+            min-height: 120px;
+            font-size: 1rem;
+            line-height: 1.6;
+            transition: all 0.3s ease;
+            resize: vertical;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+            width: calc(100% - 60px); /* Account for mic button */
+        }
+        textarea:focus {
+            border-color: #a855f7;
+            box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.1);
+            outline: none;
+        }
+        .speech-status {
+            position: absolute;
+            bottom: -25px;
+            left: 15px;
+            font-size: 0.85rem;
+            color: #6c757d;
+            font-style: italic;
+        }
+        .question-text {
+            font-size: 1.1rem;
+            color: #2d3748;
+            line-height: 1.6;
+            margin-bottom: 1.2rem;
+            font-weight: 500;
+        }
+        .question-number {
+            font-weight: 700;
+            color: #a855f7;
+            margin-right: 0.5rem;
+        }
+        .submit-button {
+            background: linear-gradient(135deg, #9333ea, #7c3aed);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 30px;
+            border: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+            position: relative;
+            min-width: 200px;
+        }
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
+            background: linear-gradient(135deg, #7c3aed, #6d28d9);
+        }
+        .submit-button .button-loader {
+            display: none;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .submit-button .button-loader .spinner-border-sm {
+            width: 1rem;
+            height: 1rem;
+            margin-right: 0.5rem;
+        }
+        .submit-button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+        #resultsSection {
+            background: linear-gradient(145deg, #ffffff, #f8f9fa);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-top: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        .file-input-wrapper {
+            text-align: center;
+            padding: 2rem;
+            border: 3px dashed #d8b4fe;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+        }
+        .file-input-wrapper:hover {
+            background: rgba(255, 255, 255, 0.95);
+            border-color: #a855f7;
+        }
+        label[for="resume"] {
+            background: linear-gradient(135deg, #9333ea, #7c3aed);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.2);
+        }
+        label[for="resume"]:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(124, 58, 237, 0.3);
+        }
+        #file-name {
+            margin-top: 1rem;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        .interview-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+            animation: fadeIn 0.5s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .loading-overlay {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(5px);
+            border-radius: 15px;
+        }
+        .container {
+            max-width: 1140px;
+            width: 100%;
+            margin-right: auto;
+            margin-left: auto;
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+        @media (max-width: 1024px) {
+            .interview-container {
+                max-width: 90%;
+                margin: 0 auto;
+            }
+            .upload-container {
+                max-width: 800px;
+            }
+        }
+        @media (max-width: 768px) {
+            .upload-container {
+                max-width: 95%;
+            }
+            .interview-container {
+                padding: 1rem;
+                max-width: 95%;
+            }
+            .response-box {
+                padding: 1.5rem;
+                margin: 1rem 0;
+            }
+            textarea {
+                width: calc(100% - 50px);
+            }
+        }
+        .upload-loader {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 10;
+        }
+        .upload-loader .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3e8ff;
+            border-top: 5px solid #9333ea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 1rem;
+        }
+        .upload-loader .loading-text {
+            color: #6b21a8;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .navbar {
+            padding: 2s ease;
+        }
+        .navbar-toggler {
+            display: none !important;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            padding: 0.5rem;
+            margin-right: 0.0.5rem;
+        }
+        .navbar-toggler:focus {
+            box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.25);
+        }
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+        @media (max-width: 991.98px) {
+            .navbar-toggler {
+                display: block !important;
+            }
+            .navbar-collapse {
+                background: rgba(67, 56, 202, 0.95);
+                padding: 1rem;
+                border-radius: 0.5rem;
+                margin-top: 0.5rem;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                z-index: 1000;
+            }
+            .navbar-nav {
+                padding: 0.5rem 0;
+            }
+            .nav-item {
+                margin: 0.5rem 0;
+            }
+            .container {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+        }
+    </style>
+</head>
+<body class="gradient-bg">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top shadow nav-gradient">
+        <div class="container">
+            <a class="navbar-brand fs-1 fw-bold" href="#">InterviewPro</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link fs-5 text-white" href="/app">Home</a></li>
+                    <li class="nav-item"><a class="nav-link fs-5 text-white" href="/history">History</a></li>
+                    {% if session.user %}
+                        <li class="nav-item"><span class="nav-link fs-5 text-white">Welcome, {{ session.user }}</span></li>
+                        <li class="nav-item mx-2"><a href="/logout" class="btn btn-outline-light fw-bold">Logout</a></li>
+                    {% else %}
+                        <li class="nav-item mx-2"><a href="/login" class="btn btn-outline-light fw-bold">Login</a></li>
+                        <li class="nav-item"><a href="/signup" class="btn btn-outline-light fw-bold">Sign Up</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="py-5">
+        <div class="container">
+            <div class="upload-container">
+                <div class="upload-loader">
+                    <div class="spinner"></div>
+                    <div class="loading-text">Processing resume...</div>
+                </div>
+                <form method="POST" enctype="multipart/form-data" id="uploadForm" action="/mock-interview">
+                    <div class="file-input-wrapper text-center">
+                        <input type="file" class="visually-hidden" id="resume" name="resume" accept=".pdf,.docx" required>
+                        <label for="resume" class="btn btn-primary">
+                            <i class="bi bi-folder2-open"></i> Choose File
+                        </label>
+                        <p class="text-muted mt-2 mb-0" id="file-name">No file selected</p>
+                    </div>
+                    <div class="text-center mt-3">
+                        <button type="submit" class="btn btn-success">
+                            <i class="bi bi-robot"></i> Generate Questions
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            {% if questions %}
+            <div class="interview-container">
+                <h3 class="text-center mb-4">Interview Questions</h3>
+                <form id="interviewForm">
+                    {% if questions.all_questions is defined %}
+                        {% for category, question in questions.all_questions %}
+                            <div class="response-box" data-category="{{ category }}">
+                                <div class="d-flex align-items-center mb-2">
+                                    <span class="category-badge badge-{{ category }}">{{ category|title }}</span>
+                                    <p class="fw-bold mb-0 question-text">Q{{ loop.index }}: {{ question }}</p>
+                                </div>
+                                <div class="position-relative">
+                                    <textarea class="form-control mb-2" name="answer{{ loop.index }}" rows="3"></textarea>
+                                    <div class="mic-button" data-question="{{ loop.index }}">
+                                        <i class="bi bi-mic"></i>
+                                    </div>
+                                    <div class="speech-status" id="status{{ loop.index }}"></div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        {% for q in questions %}
+                            <div class="response-box">
+                                <p class="fw-bold question-text">Q{{ loop.index }}: {{ q }}</p>
+                                <div class="position-relative">
+                                    <textarea class="form-control mb-2" name="answer{{ loop.index }}" rows="3"></textarea>
+                                    <div class="mic-button" data-question="{{ loop.index }}">
+                                        <i class="bi bi-mic"></i>
+                                    </div>
+                                    <div class="speech-status" id="status{{ loop.index }}"></div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    <div class="text-center mt-4">
+                        <button type="button" class="btn btn-primary submit-button" onclick="submitInterview()" id="submitBtn">
+                            <span class="button-text">Submit Answers</span>
+                            <span class="button-loader" style="display: none;">
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                Submitting...
+                            </span>
+                        </button>
+                    </div>
+                </form>
+                <div id="resultsSection" class="mt-4" style="display: none;">
+                    <div id="detailedResults"></div>
+                    <button class="btn btn-success mt-3" onclick="downloadReport()">Download Report</button>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+        const { jsPDF } = window.jspdf;
+        let evaluationResults = null;
+
+        document.getElementById('resume').addEventListener('change', function(e) {
+            document.getElementById('file-name').textContent = e.target.files[0]?.name || 'No file chosen';
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.mic-button').forEach(button => {
+                let mediaRecorder;
+                let audioChunks = [];
+                
+                button.addEventListener('click', function() {
+                    const questionNum = this.dataset.question;
+                    const statusElement = document.getElementById(`status${questionNum}`);
+                    const textarea = document.querySelector(`textarea[name="answer${questionNum}"]`);
+                    
+                    if (mediaRecorder && mediaRecorder.state === 'recording') {
+                        mediaRecorder.stop();
+                        this.classList.remove('recording');
+                        this.innerHTML = '<i class="bi bi-mic"></i>';
+                        if (statusElement) statusElement.textContent = 'Processing...';
+                        return;
+                    }
+                    
+                    navigator.mediaDevices.getUserMedia({ audio: true })
+                        .then(stream => {
+                            this.classList.add('recording');
+                            this.innerHTML = '<i class="bi bi-mic-mute"></i>';
+                            if (statusElement) statusElement.textContent = 'Listening...';
+                            
+                            textarea.focus();
+                            const end = textarea.value.length;
+                            textarea.setSelectionRange(end, end);
+                            
+                            audioChunks = [];
+                            mediaRecorder = new MediaRecorder(stream);
+                            
+                            mediaRecorder.addEventListener('dataavailable', event => {
+                                audioChunks.push(event.data);
+                            });
+                            
+                            mediaRecorder.addEventListener('stop', () => {
+                                stream.getTracks().forEach(track => track.stop());
+                                
+                                const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+                                
+                                const reader = new FileReader();
+                                reader.readAsDataURL(audioBlob);
+                                reader.onloadend = () => {
+                                    const base64Audio = reader.result;
+                                    
+                                    fetch('/transcribe-audio', {
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-Type': 'application/json',
+                                        },
+                                        body: JSON.stringify({ 
+                                            audio: base64Audio, 
+                                            question_index: questionNum 
+                                        }),
+                                    })
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        if (data.error) {
+                                            if (statusElement) statusElement.textContent = 'Error: ' + data.error;
+                                            setTimeout(() => {
+                                                if (statusElement) statusElement.textContent = '';
+                                            }, 3000);
+                                            return;
+                                        }
+                                        
+                                        const transcript = data.transcript;
+                                        
+                                        if (transcript.trim()) {
+                                            const cursorPos = textarea.selectionStart;
+                                            const textBefore = textarea.value.substring(0, cursorPos);
+                                            const textAfter = textarea.value.substring(cursorPos);
+                                            
+                                            const needsSpace = cursorPos > 0 && 
+                                                              textBefore.charAt(textBefore.length - 1) !== ' ' && 
+                                                              transcript.charAt(0) !== ' ';
+                                            
+                                            textarea.value = textBefore + (needsSpace ? ' ' : '') + transcript + textAfter;
+                                            
+                                            const newPos = cursorPos + transcript.length + (needsSpace ? 1 : 0);
+                                            textarea.setSelectionRange(newPos, newPos);
+                                        }
+                                        
+                                        if (statusElement) statusElement.textContent = '';
+                                    })
+                                    .catch(error => {
+                                        console.error('Transcription error:', error);
+                                        if (statusElement) {
+                                            statusElement.textContent = 'Transcription failed';
+                                            setTimeout(() => {
+                                                if (statusElement) statusElement.textContent = '';
+                                            }, 3000);
+                                        }
+                                    });
+                                };
+                            });
+                            
+                            mediaRecorder.start();
+                            
+                            setTimeout(() => {
+                                if (mediaRecorder && mediaRecorder.state === 'recording') {
+                                    mediaRecorder.stop();
+                                    this.classList.remove('recording');
+                                    this.innerHTML = '<i class="bi bi-mic"></i>';
+                                    if (statusElement) statusElement.textContent = 'Processing...';
+                                }
+                            }, 30000);
+                        })
+                        .catch(err => {
+                            console.error('Microphone access error:', err);
+                            if (statusElement) {
+                                statusElement.textContent = 'Microphone access denied';
+                                setTimeout(() => {
+                                    if (statusElement) statusElement.textContent = '';
+                                }, 3000);
+                            }
+                            this.classList.remove('recording');
+                            this.innerHTML = '<i class="bi bi-mic"></i>';
+                        });
+                });
+            });
+        });
+
+        async function submitInterview() {
+            document.getElementById('detailedResults').innerHTML = '';
+            document.getElementById('resultsSection').style.display = 'none';
+
+            const submitBtn = document.getElementById('submitBtn');
+            const buttonText = submitBtn.querySelector('.button-text');
+            const buttonLoader = submitBtn.querySelector('.button-loader');
+
+            submitBtn.disabled = true;
+            buttonText.style.display = 'none';
+            buttonLoader.style.display = 'inline-flex';
+
+            const allQuestions = [];
+            const answers = {};
+            
+            document.querySelectorAll('.response-box').forEach((box, index) => {
+                const question = box.querySelector('p.fw-bold').textContent.replace(/^Q\d+:\s/, '');
+                const answer = box.querySelector('textarea').value.trim();
+                allQuestions.push(question);
+                answers[`answer${index + 1}`] = answer;
+            });
+
+            try {
+                const response = await fetch('/evaluate-interview', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        all_questions: allQuestions,
+                        answers: answers
+                    })
+                });
+
+                if (!response.ok) throw new Error('Server error');
+                
+                evaluationResults = await response.json();
+                document.getElementById('resultsSection').style.display = 'block';
+                document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
+                
+                let html = '';
+                evaluationResults.details.forEach((item, index) => {
+                    html += `<div class="response-box">
+                        <p class="text-purple fw-bold">Q${index+1}: ${item.question}</p>
+                        <p class="text-muted">${item.answer || 'Not attempted'}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="badge ${item.score > 0 ? 'bg-success' : 'bg-secondary'}">
+                                Score: ${item.score}/10
+                            </span>
+                            <button class="btn btn-link text-purple" data-bs-toggle="collapse" 
+                                data-bs-target="#feedback${index}">
+                                ${item.score > 0 ? 'View Feedback' : 'Details'}
+                            </button>
+                        </div>
+                        <div class="collapse" id="feedback${index}">
+                            <div class="mt-2 p-2 bg-light rounded">${item.feedback}</div>
+                        </div>
+                    </div>`;
+                });
+                document.getElementById('detailedResults').innerHTML = html;
+
+            } catch (error) {
+                alert('Error submitting answers: ' + error.message);
+            } finally {
+                submitBtn.disabled = false;
+                buttonText.style.display = 'inline';
+                buttonLoader.style.display = 'none';
+            }
+        }
+
+        function downloadReport() {
+            if (!evaluationResults) {
+                alert('No results available to download');
+                return;
+            }
+
+            const doc = new jsPDF();
+            const lineHeight = 7;
+            let yPosition = 20;
+            const pageHeight = 280;
+            const margin = 14;
+            const maxWidth = 175;
+
+            doc.setFontSize(18);
+            doc.text('InterviewPro Evaluation Report', 105, yPosition, { align: 'center' });
+            yPosition = addSection(doc, yPosition + 15, [
+                { text: `Date: ${new Date().toLocaleString()}`, align: 'left' },
+                { text: `Overall Score: ${evaluationResults.total_score}/100`, align: 'right' }
+            ], lineHeight, margin, maxWidth, pageHeight);
+
+            evaluationResults.details.forEach((item, index) => {
+                yPosition = addSection(doc, yPosition, [
+                    { 
+                        text: `Q${index+1}: ${item.question}`, 
+                        style: { fontSize: 14, textColor: [30, 30, 120] },
+                        prefix: 'Question: '
+                    },
+                    {
+                        text: `Your Answer:\n${item.answer || "Not attempted"}`,
+                        style: { fontSize: 12, textColor: [60, 60, 60] }
+                    },
+                    {
+                        text: `Score: ${item.score}/10`,
+                        style: { fontSize: 12, textColor: [0, 100, 0] }
+                    },
+                    {
+                        text: `Feedback:\n${processFeedback(item.feedback)}`,
+                        style: { fontSize: 12, textColor: [80, 80, 80] }
+                    }
+                ], lineHeight, margin, maxWidth, pageHeight);
+                
+                yPosition = addLineSeparator(doc, yPosition, margin, pageHeight);
+            });
+
+            doc.save(`interview-report-${new Date().toISOString().slice(0,10)}.pdf`);
+
+            function processFeedback(text) {
+                return text
+                    .replace(/\*\*/g, '')
+                    .replace(/•/g, '◦')
+                    .replace(/\s+/g, ' ')
+                    .trim();
+            }
+
+            function addSection(doc, yPos, elements, lh, margin, maxW, pageH) {
+                let currentY = yPos;
+                
+                elements.forEach(element => {
+                    if (currentY > pageH - 50) {
+                        doc.addPage();
+                        currentY = 20;
+                    }
+
+                    doc.setFontSize(element.style?.fontSize || 12);
+                    doc.setTextColor(...(element.style?.textColor || [0, 0, 0]));
+
+                    const text = (element.prefix || '') + element.text;
+                    const paragraphs = text.split('\n');
+                    let allLines = [];
+                    
+                    paragraphs.forEach(para => {
+                        const lines = doc.splitTextToSize(para, maxW);
+                        allLines = allLines.concat(lines);
+                    });
+
+                    allLines.forEach((line, idx) => {
+                        if (currentY > pageH - lh) {
+                            doc.addPage();
+                            currentY = 20;
+                        }
+                        doc.text(line, margin, currentY);
+                        currentY += lh;
+                    });
+
+                    currentY += lh;
+                });
+
+                return currentY;
+            }
+
+            function addLineSeparator(doc, yPos, margin, pageH) {
+                if (yPos > pageH - 10) {
+                    doc.addPage();
+                    yPos = 20;
+                }
+                doc.setDrawColor(200);
+                doc.line(margin, yPos, 196, yPos);
+                return yPos + 5;
+            }
+        }
+
+        document.getElementById('uploadForm').addEventListener('submit', function(e) {
+            const loader = document.querySelector('.upload-loader');
+            if (loader) {
+                loader.style.display = 'flex';
+            }
+        });
+    </script>
+</body>
+</html>
