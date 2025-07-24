@@ -105,10 +105,7 @@ Visit `http://127.0.0.1:5000/` in your web browser to use the app.
 
 Contributions are welcome! Feel free to fork the repo and submit pull requests.
 
-## 📬 Contact
 
-Created with ❤️ by [Charan Rachakonda](https://github.com/CharanRachakonda)  
-If you have any questions or suggestions, feel free to open an issue.
 
 ```
 
