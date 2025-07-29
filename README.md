@@ -55,7 +55,7 @@ Follow the steps below to set up and run the project locally.
 
 ```
 
-git clone https://github.com/CharanRachakonda/InterviewPro.git
+git clone https://github.com/SudheshnaGaddam/Automated Interview Questions Generator.git
 cd InterviewPro
 
 ```
